@@ -1,4 +1,4 @@
-import { IsDate, IsEmail, IsString, IsStrongPassword } from 'class-validator';
+import { IsEmail, IsString, IsStrongPassword } from 'class-validator';
 
 export class CreateUserDto {
     @IsString({ message: 'invalid FirstName'})
