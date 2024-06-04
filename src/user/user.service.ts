@@ -20,15 +20,15 @@ export class UserService {
     return this.usersRepository.find();
   }
 
-  findOne(id: number): Promise<User | null> {
-    return this.usersRepository.findOneBy({ id });
+  findOne(username: string): Promise<User | null> {
+    return this.usersRepository.findOneBy({ username });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto): Promise<UpdateResult>  {
-    return this.usersRepository.update({ id }, updateUserDto);
+  update(username: string, updateUserDto: UpdateUserDto): Promise<UpdateResult>  {
+    return this.usersRepository.update({ username }, updateUserDto);
   }
 
-  async remove(id: number): Promise<void> {
-    await this.usersRepository.delete(id);
+  async remove(username: string): Promise<void> {
+    await this.usersRepository.delete({ username });
   }
 }
