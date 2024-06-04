@@ -37,6 +37,6 @@ export class User {
     @UpdateDateColumn()
     updatedAt: Date;
 
-    @OneToMany(type => Wallet, wallet => wallet.user)
+    @OneToMany((type: Wallet) => Wallet, (wallet: Wallet) => wallet.user)
     wallet: Wallet[]
 }

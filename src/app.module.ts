@@ -6,18 +6,24 @@ import { WalletModule } from './wallet/wallet.module';
 import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user/entities/user.entity';
+import { ConfigModule } from '@nestjs/config';
+import { Wallet } from './wallet/entities/wallet.entity';
+
+let { PGHOST, PGDATABASE, PGUSER, PGPASSWORD } = process.env;
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'root',
-      database: 'test',
-      entities: [User],
-      synchronize: true,
+      ssl: true,
+      type: 'postgres',
+      host: PGHOST,
+      port: 5432,
+      username: PGUSER,
+      password: PGPASSWORD,
+      database: PGDATABASE,
+      entities: [User, Wallet],
+      // synchronize: true,
       autoLoadEntities: true,
     }),
     UserModule, 
